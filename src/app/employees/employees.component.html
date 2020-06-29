@@ -1,0 +1,45 @@
+<div>
+    <div>
+        Filter By:
+        <input [(ngModel)]="filterCondition">
+    </div>
+
+    <p>Total Number of Employees: {{ (employees | employeeFilter:filterCondition).length }}</p>
+
+    <div *ngIf="employees.length">
+        <table class="emp-list">
+            <thead>
+                <th>Emp Id</th>
+                <th>Name</th>
+                <th>Location</th>
+                <th>Email</th>
+                <th>Mobile</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let employee of employees | employeeFilter : filterCondition">
+                    <td>
+                        <a routerLink='/details/{{employee.id}}'>
+                            {{ employee.id }}
+                        </a>
+                    </td>
+                    <td>{{ employee.name }}</td>
+                    <td>{{ employee.location }}</td>
+                    <td>{{ employee.email }}</td>
+                    <td>{{ employee.mobile }}</td>
+                    <td>
+                        <a routerLink="/editEmployee/{{employee.id}}">
+                            Edit{{ employee.id }}
+                        </a>
+                    </td>
+                    <td>
+                        <a routerLink="/deleteEmployee/{{employee.id}}">
+                            Delete{{ employee.id }}
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
