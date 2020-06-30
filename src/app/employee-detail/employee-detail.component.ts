@@ -10,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./employee-detail.component.css']
 })
 export class EmployeeDetailComponent implements OnInit {
+  title = "Employee Details";
   @Input() employee: Employee;
   constructor(private empService: EmployeeService,
     private location: Location,

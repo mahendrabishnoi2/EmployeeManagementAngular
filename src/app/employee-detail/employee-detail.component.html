@@ -1,20 +1,26 @@
-<div *ngIf="employee">
-    <h2>Employee Details</h2>
-    <div>
-        Id: {{employee.id}}
+<div *ngIf="employee" class="container">
+    <h2>{{ title }}</h2>
+    <div class="card">
+        <div>
+            <label for="id">Id: </label>
+            <span id="id">{{employee.id}}</span>
+        </div>
+        <div>
+            <label for="name">Name: </label>
+            <span id="name">{{employee.name}}</span>
+        </div>
+        <div>
+            <label for="location">Location: </label>
+            <span id="location">{{employee.location}}</span>
+        </div>
+        <div>
+            <label for="email">Email: </label>
+            <span id="email">{{employee.email}}</span>
+        </div>
+        <div>
+            <label for="mobile">Mobile: </label>
+            <span id="mobile">{{employee.mobile}}</span>
+        </div>
     </div>
-    <div>
-        Name: {{employee.name}}
-    </div>
-    <div>
-        Location: {{employee.location}}
-    </div>
-    <div>
-        Email: {{employee.email}}
-    </div>
-    <div>
-        Mobile: {{employee.mobile}}
-    </div>
-
-    <button (click)="goBack()">Back</button>
+    <button class="btn btn-default" id="back" (click)="goBack()">Back</button>
 </div>

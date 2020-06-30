@@ -9,6 +9,7 @@ import { EmployeeFilterPipe } from '../employee-filter.pipe';
   styleUrls: ['./employees.component.css']
 })
 export class EmployeesComponent implements OnInit {
+  title = "Employee List";
   employees:Employee[] = [];
   filterCondition:string = "";
   constructor(public empService: EmployeeService) { }

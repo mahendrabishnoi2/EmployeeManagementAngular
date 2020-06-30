@@ -1,40 +1,47 @@
 <div>
     <div>
-        Filter By:
-        <input [(ngModel)]="filterCondition">
+        <label for="filter">Filter By:</label> <br>
+        <input id="filter" [(ngModel)]="filterCondition">
     </div>
 
-    <p>Total Number of Employees: {{ (employees | employeeFilter:filterCondition).length }}</p>
+    <p>
+        <br>
+        <label for="count">Total Number of Employees: </label>&nbsp;
+        <span id="count">{{ (employees | employeeFilter:filterCondition).length }}</span>
+        <br><br>
+    </p>
 
     <div *ngIf="employees.length">
-        <table class="emp-list">
-            <thead>
-                <th>Emp Id</th>
-                <th>Name</th>
-                <th>Location</th>
-                <th>Email</th>
-                <th>Mobile</th>
-                <th>Edit</th>
-                <th>Delete</th>
+        <table class="table table-hover">
+            <thead class="header">
+                <tr>
+                    <th>Emp Id</th>
+                    <th>Name</th>
+                    <th>Location</th>
+                    <th>Email</th>
+                    <th>Mobile</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let employee of employees | employeeFilter : filterCondition">
+                <tr *ngFor="let employee of employees | employeeFilter : filterCondition; index as i">
                     <td>
                         <a routerLink='/details/{{employee.id}}'>
                             {{ employee.id }}
                         </a>
                     </td>
-                    <td>{{ employee.name }}</td>
-                    <td>{{ employee.location }}</td>
-                    <td>{{ employee.email }}</td>
-                    <td>{{ employee.mobile }}</td>
+                    <td [attr.id]="'name'+(i+1)">{{ employee.name }}</td>
+                    <td [attr.id]="'loc'+(i+1)">{{ employee.location }}</td>
+                    <td [attr.id]="'email'+(i+1)">{{ employee.email }}</td>
+                    <td [attr.id]="'mob'+(i+1)">{{ employee.mobile }}</td>
                     <td>
-                        <a routerLink="/editEmployee/{{employee.id}}">
+                        <a class="btn btn-warning" routerLink="/editEmployee/{{employee.id}}">
                             Edit{{ employee.id }}
                         </a>
                     </td>
                     <td>
-                        <a routerLink="/deleteEmployee/{{employee.id}}">
+                        <a class="btn btn-danger" routerLink="/deleteEmployee/{{employee.id}}">
                             Delete{{ employee.id }}
                         </a>
                     </td>

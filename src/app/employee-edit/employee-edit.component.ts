@@ -10,12 +10,20 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./employee-edit.component.css']
 })
 export class EmployeeEditComponent implements OnInit {
+  title = "Edit Employee";
   employee:Employee;
   constructor(
     private empService: EmployeeService,
     private route: ActivatedRoute,
     private router: Router
   ) { }
+
+  locations = ['Bangalore', 'Chennai', 'Pune', 'Hyderabad'];
+
+  onSubmit() {
+    this.empService.updateEmployee(this.employee).subscribe();
+    this.router.navigate(['/employees']);
+  }
 
   ngOnInit(): void {
     this.getEmployee();
@@ -24,11 +32,6 @@ export class EmployeeEditComponent implements OnInit {
   getEmployee(): void {
     const id = +this.route.snapshot.paramMap.get('id');
     this.empService.getEmployee(id).subscribe(employee => this.employee = employee);
-  }
-
-  updateEmployee(): void {
-    this.empService.updateEmployee(this.employee).subscribe();
-    this.router.navigate(['/employees']);
   }
 
 }

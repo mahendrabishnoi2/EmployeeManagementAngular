@@ -2,7 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Employee } from '../employee';
 import { EmployeeService } from '../employee.service';
 import { Router } from '@angular/router';
-import { EmployeeFormComponent } from '../employee-form/employee-form.component';
 
 @Component({
   selector: 'app-add-employee',
@@ -11,8 +10,9 @@ import { EmployeeFormComponent } from '../employee-form/employee-form.component'
 })
 
 export class AddEmployeeComponent implements OnInit {
+  title = "Add Employee";
 
-  locations: ['Bangalore', 'Chennai', 'Pune', 'Hyderabad'];
+  locations = ['Bangalore', 'Chennai', 'Pune', 'Hyderabad'];
   employees: Employee[];
   id: number;
   newEmployee: Employee = {
@@ -29,9 +29,11 @@ export class AddEmployeeComponent implements OnInit {
     private router: Router
   ) { }
 
-  submitted = false;
 
-  onSubmit() { this.submitted = true; }
+  onSubmit() {
+    this.empService.addEmployee(this.newEmployee as Employee).subscribe();
+    this.router.navigate(['/employees']);
+  }
 
   // TODO: Remove this when we're done
   get diagnostic() { return JSON.stringify(this.newEmployee); }

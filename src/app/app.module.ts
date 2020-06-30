@@ -13,21 +13,19 @@ import { HttpClientModule } from '@angular/common/http';
 import { EmployeeService } from './employee.service';
 import { EmployeeDetailComponent } from './employee-detail/employee-detail.component';
 import { EmployeeEditComponent } from './employee-edit/employee-edit.component';
-import { EmployeeDeleteComponent } from './employee-delete/employee-delete.component';
 import { EmployeeFilterPipe } from './employee-filter.pipe';
-import { EmployeeFormComponent } from './employee-form/employee-form.component';
-
+import { EmployeeDeleteComponent } from './employee-delete/employee-delete.component';
+ 
 @NgModule({
-  declarations: [
+  declarations: [ 
     AppComponent,
     EmployeesComponent,
     AddEmployeeComponent,
     EmployeeDetailComponent,
     EmployeeEditComponent,
-    EmployeeDeleteComponent,
     EmployeeFilterPipe,
-    EmployeeFormComponent
-  ],
+    EmployeeDeleteComponent
+  ], 
   imports: [
     BrowserModule,
     AppRoutingModule,

@@ -1,27 +1,48 @@
 <div>
-    <h2>Add Employee</h2>
-    <form *ngIf="newEmployee">
-        <div class="form-group">
-            <label for="name">Employee Name:</label>
-            <input id="name" name="name" [(ngModel)]="newEmployee.name">
-        </div>
-        <div class="form-group">
-            <label for="location">Location:</label>
-            <input id="location" name="location" [(ngModel)]="newEmployee.location">
-        </div>
-        <div class="form-group">
-            <label for="email">Email:</label>
-            <input id="email" name="email" [(ngModel)]="newEmployee.email">
-        </div>
-        <div class="form-group">
-            <label for="mobile">Mobile:</label>
-            <input id="mobile" name="mobile" [(ngModel)]="newEmployee.mobile">
-        </div>
-        <button (click)="addEmployee()">Submit</button>
-    </form>
-</div>
+    <h2>{{ title }}</h2>
+    <div *ngIf="newEmployee">
+        <form (ngSubmit)="onSubmit()" #empForm="ngForm">
 
-<div>
-    <h2>form using component</h2>
-    <app-employee-form></app-employee-form>
+            <div class="form-group">
+                <label for="name">Employee Name:</label>
+                <input type="text" class="form-control" id="name" required [(ngModel)]="newEmployee.name" name="name"
+                    pattern="([a-zA-Z]{3,})+(?:[\sa-zA-Z])*?" minlength="3" #name="ngModel">
+                    <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+                        Name is required with minimum 3 characters
+                    </div>
+            </div>
+
+            <div class="form-group">
+                <label for="location">Location:</label>
+                <!-- <input id="location" name="location" [(ngModel)]="newEmployee.location"> -->
+                <select class="form-control" id="location" required [(ngModel)]="newEmployee.location" name="location"
+                    #location="ngModel">
+                    <option *ngFor="let loc of locations" [value]="loc">{{loc}}</option>
+                </select>
+                <div [hidden]="location.valid || location.pristine" class="alert alert-danger">
+                    Location is required
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" required [(ngModel)]="newEmployee.email"
+                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" name="email" #email="ngModel">
+                    <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+                        Email is required
+                    </div>
+            </div>
+
+            <div class="form-group">
+                <label for="mobile">Mobile:</label>
+                <input type="text" class="form-control" id="mobile" required [(ngModel)]="newEmployee.mobile"
+                    pattern="[0-9]{10,}" name="mobile" minlength="10" maxlength="10" #mobile="ngModel">
+                    <div [hidden]="mobile.valid || mobile.pristine" class="alert alert-danger">
+                        Only numbers allowed and exactly 10 digits required
+                    </div>
+            </div>
+            <button id="add" class="btn btn-success" type="submit" [disabled]="!empForm.form.valid">Submit</button>
+
+        </form>
+    </div>
 </div>

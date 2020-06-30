@@ -1,5 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 /* Application-wide Styles */
+body {
+  max-width: 700px;
+  width: 80%;
+  margin: 0 auto;
+  /* display: flex;
+  justify-content: center; */
+}
 h1 {
     color: #369;
     font-family: Arial, Helvetica, sans-serif;
@@ -10,13 +17,9 @@ h1 {
     font-family: Arial, Helvetica, sans-serif;
     font-weight: lighter;
   }
-  body {
-    margin: 2em;
-  }
   body, input[type="text"], button {
     color: #333;
     font-family: Cambria, Georgia;
-    background-color: blanchedalmond;
   }
   /* everywhere else */
   * {
